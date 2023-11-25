@@ -8,3 +8,24 @@
     margin-right: 4px;
     background-color: #e2e8f0;
 }
+
+.branco {
+    color: #000000;
+    background-color: #ffffff;
+    border-style: solid;
+    border-color: #ffffff;
+}
+
+.vermelho {
+    color: #ffffff;
+    background-color: #d10808;
+    border-style: solid;
+    border-color: #d10808;
+}
+
+.preto {
+    color: #ffffff;
+    background-color: #000000;
+    border-style: solid;
+    border-color: #000000;
+}
