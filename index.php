@@ -17,14 +17,19 @@
 
   <div class="container my-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <div id="timer" class="h2 font-weight-bold">Timer: 00:00</div>
+      <div id="chute" class="h2 font-weight-bold">Chute: </div>
       <div hidden id="number" class="h2 font-weight-bold">Último Número: -</div>
+      <div id="timer" class="h2 font-weight-bold">Timer: 00:00</div>
     </div>
+
+    <div id="probBranco" class="font-weight-bold"></div>
+    <div id="probPreto" class="font-weight-bold"></div>
+    <div id="probVermelho" class="font-weight-bold"></div>
 
     <div class="d-flex justify-content-center align-items-center mb-4">
       <div id="sortedNumber" class="h2 circulo-2"></div>
     </div>
-    
+
     <div class="d-flex justify-content-center mb-4">
       <button id="startButton" class="btn btn-primary" onclick="start();">COMEÇAR</button>
       <button id="pauseButton" class="btn btn-danger ms-2" disabled onclick="stop();">PAUSAR</button>
@@ -35,12 +40,13 @@
     <div class="d-flex justify-content-center">
       <canvas id="pieChart" width="400" height="400"></canvas>
     </div>
+
   </div>
 
   <script>
     updateTimer();
 
-    //inicia o chart
+    //inicia o chart de resultados
     var pieChart = new Chart($('#pieChart'), {
       type: 'pie',
       data: {
