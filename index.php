@@ -23,8 +23,8 @@
     </div>
 
     <div id="probBranco" class="font-weight-bold"></div>
-    <div id="probPreto" class="font-weight-bold"></div>
     <div id="probVermelho" class="font-weight-bold"></div>
+    <div id="probPreto" class="font-weight-bold"></div>
 
     <div class="d-flex justify-content-center align-items-center mb-4">
       <div id="sortedNumber" class="h2 circulo-2"></div>

@@ -33,7 +33,7 @@ function updateGraficoPizza() {
 
 function sortearNumero() {
     
-    const number = Math.floor(Math.random() * 22);
+    const number = Math.floor(Math.random() * quantidadeNumeros);
     var cor = 'branco';
 
     if (number > 0 && number < 11) {
