@@ -18,7 +18,7 @@
   <div class="container my-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
       <div id="chute" class="h2 font-weight-bold">Chute: </div>
-      <div hidden id="number" class="h2 font-weight-bold">Último Número: -</div>
+      <div id="acerto" class="h2 font-weight-bold">% de acerto: -</div>
       <div id="timer" class="h2 font-weight-bold">Timer: 00:00</div>
     </div>
 

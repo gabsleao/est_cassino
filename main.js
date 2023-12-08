@@ -7,6 +7,8 @@ var coresSorteadas = [];
 var qtdBranco = 1;
 var qtdPreto = 10;
 var qtdVermelho = 10;
+var qtdAcertos = 0;
+var chute;
 
 function updateTimer() {
     const minutos = Math.floor(segundosPassados / 60).toString().padStart(2, '0');
@@ -30,12 +32,13 @@ function updateGraficoPizza() {
 }
 
 function sortearNumero() {
+    
     const number = Math.floor(Math.random() * 22);
     var cor = 'branco';
 
     if (number > 0 && number < 11) {
         cor = 'vermelho';
-    } else if (number > 0 && number >= 11) {
+    } else if (number >= 11) {
         cor = 'preto';
     }
 
@@ -49,6 +52,8 @@ function sortearNumero() {
     $('#history').append(circulo);
 
     coresSorteadas.push(cor);
+
+    calcularAcertos(chute.toLowerCase(), cor);
 }
 
 function stop() {
@@ -81,27 +86,28 @@ function start() {
 }
 
 function calcularProbabilidades(coresSorteadas) {
-    console.log('calculando...');
+    // console.log('calculando...');
     
-    // Contar o número de ocorrências de cara e coroa
+    // Contar o número de ocorrências de cara
     const quantidadeSorteouBranco = coresSorteadas.filter(cor => cor === 'branco').length;
     const quantidadeSorteouPreto = coresSorteadas.filter(cor => cor === 'preto').length;
     const quantidadeSorteouVermelho = coresSorteadas.filter(cor => cor === 'vermelho').length;
 
     probBranco = (qtdBranco / quantidadeNumeros);
     if(quantidadeSorteouBranco > 0){
+        // console.log("probBranco: " + probBranco + " / quantidade sorteado branco: " + quantidadeSorteouBranco)
         probBranco = probBranco**(quantidadeSorteouBranco+1);
     }
 
     probPreto = (qtdPreto / quantidadeNumeros);
     if(quantidadeSorteouPreto > 0){
-        console.log("probPreto: " + probPreto + " / quantidade sorteado preto: " + quantidadeSorteouPreto)
+        // console.log("probPreto: " + probPreto + " / quantidade sorteado preto: " + quantidadeSorteouPreto)
         probPreto = probPreto**(quantidadeSorteouPreto+1);
     }
 
     probVermelho = (qtdVermelho / quantidadeNumeros);
     if(quantidadeSorteouVermelho > 0){
-        console.log("probVermelho: " + probVermelho + " / quantidade sorteado vermelho: " + quantidadeSorteouVermelho)
+        // console.log("probVermelho: " + probVermelho + " / quantidade sorteado vermelho: " + quantidadeSorteouVermelho)
         probVermelho = probVermelho**(quantidadeSorteouVermelho+1);
     }
 
@@ -118,10 +124,23 @@ function calcularProbabilidades(coresSorteadas) {
     $('#probBranco').html('Branco: ' + probBranco.toFixed(3)*100 + '%');
     $('#probPreto').html('Preto: ' + probPreto.toFixed(3)*100 + '%');
     $('#probVermelho').html('Vermelho: ' + probVermelho.toFixed(3)*100 + '%');
-    // console.log('quantidadeSorteouBranco: ' + quantidadeSorteouBranco + ' - probBranco: ' + probBranco.toFixed(2)*100 + '%');
-    // console.log('quantidadeSorteouPreto: ' + quantidadeSorteouPreto + ' - probPreto: ' + probPreto.toFixed(2)*100 + '%');
-    // console.log('quantidadeSorteouVermelho: ' + quantidadeSorteouVermelho + ' - probVermelho: ' + probVermelho.toFixed(2)*100 + '%');
 
     $('#chute').html('Chute: ' + cor);
+    chute = cor;
+
     return;
+  }
+
+  function calcularAcertos(chute, cor){
+    quantidadeVezesSorteios = coresSorteadas.length;
+
+    // console.log('chute: ' + chute + " cor: " + cor)
+    if(chute == cor){
+        qtdAcertos = qtdAcertos + 1;
+    }
+
+    probAcertos = (qtdAcertos / quantidadeVezesSorteios);
+
+    // console.log("probAcertos: " + probAcertos + " => quantidade acertos: " + qtdAcertos + " / quantidade sorteios: " + quantidadeVezesSorteios);
+    $('#acerto').html('% de acerto: ' + probAcertos.toFixed(3)*100 + '%');
   }
