@@ -87,11 +87,34 @@ function start() {
 
 function calcularProbabilidades(coresSorteadas) {
     // console.log('calculando...');
+    coresRepetidas = 0;
+    corSorteada = coresSorteadas[coresSorteadas.length - 1]
     
+    coresSorteadas.slice().reverse().every(cor => {
+        console.log('cor do array: ' + cor + ' -- cor sorteada: ' + corSorteada);
+        if(cor == corSorteada){
+            coresRepetidas += 1;
+            console.log('são iguais! coresRepetidas: ' + coresRepetidas);
+            return true;
+        }else{
+            console.log('são diferentes ): coresRepetidas: ' + coresRepetidas);
+            return false;
+        }
+    });
+    // console.log('coresSorteadas: ' + coresSorteadas)
+    // console.log('coresRepetidas: ' + coresRepetidas)
+    coresAConsiderar = coresSorteadas.slice(-coresRepetidas);
+    // console.log('cores a considerar: ' + coresAConsiderar);
+    // console.log('___________________________');
+
     // Contar o número de ocorrências de cara
-    const quantidadeSorteouBranco = coresSorteadas.filter(cor => cor === 'branco').length;
-    const quantidadeSorteouPreto = coresSorteadas.filter(cor => cor === 'preto').length;
-    const quantidadeSorteouVermelho = coresSorteadas.filter(cor => cor === 'vermelho').length;
+    const quantidadeSorteouBranco = coresAConsiderar.filter(cor => cor === 'branco').length;
+    const quantidadeSorteouPreto = coresAConsiderar.filter(cor => cor === 'preto').length;
+    const quantidadeSorteouVermelho = coresAConsiderar.filter(cor => cor === 'vermelho').length;
+
+    // console.log('quantidadeSorteouBranco: ' + quantidadeSorteouBranco);
+    // console.log('quantidadeSorteouPreto: ' + quantidadeSorteouPreto);
+    // console.log('quantidadeSorteouVermelho: ' + quantidadeSorteouVermelho);
 
     probBranco = (qtdBranco / quantidadeNumeros);
     if(quantidadeSorteouBranco > 0){
